@@ -81,6 +81,9 @@ function draw() {
 
 function keyPressed() {
   if (keyCode === UP_ARROW) {
+    if (bricks.length !== 0) {
+      score = 0;
+    }
     setup();
     loop();
   }
