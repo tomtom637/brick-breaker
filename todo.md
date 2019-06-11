@@ -6,5 +6,12 @@
 - [x] make a score system
 - [x] make an ending
 - [x] make a title
-- [] refactor to make levels
+- [x] refactor to make levels
 - [] make sound effects
+
+## AFTERMATH TODOS
+
+- [] try to solve as many bugs as possible
+  - [] slow frame-rate
+  - [] collision bug when both the ball and the paddle are right against the edge
+  - [] stiffness of the controls
