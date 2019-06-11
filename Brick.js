@@ -1,13 +1,12 @@
 class Brick {
-  constructor(xLocation, r, g, b, bWidth, bHeight) {
+  constructor(xLocation, yLocation, r, g, b, bWidth, bHeight) {
     this.r = r;
     this.g = g;
     this.b = b;
     this.bWidth = bWidth;
     this.bHeight = bHeight;
-    this.xdir = 10;
     this.lives = 1;
-    this.body = createVector(xLocation, canvaHeight / 8);
+    this.body = createVector(xLocation, yLocation);
   }
   update() {}
   show() {

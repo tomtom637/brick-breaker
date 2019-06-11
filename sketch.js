@@ -1,24 +1,44 @@
-let canvaWidth = 700;
-let canvaHeight = 600;
-let red = [200, 0, 50];
-let blue = [0, 150, 200];
-let green = [0, 200, 80];
-let grey = [200, 200, 200];
-let darkGrey = [80, 80, 80];
+const levelMatrix1 = [
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 1, 0, 1, 0, 1, 0],
+  [0, 1, 0, 1, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0]
+];
+
+let canvaWidth = levelMatrix1[0].length * 100;
+let canvaHeight = levelMatrix1.length * 100;
+const red = [200, 0, 50];
+const blue = [0, 150, 200];
+const green = [0, 200, 80];
+const grey = [200, 200, 200];
+const darkGrey = [80, 80, 80];
 
 let redBall;
 let paddle;
-let bricks = [];
-let translation = 100;
+let bricks;
+let brickWidth = 35;
+let brickHeight = 35;
 let score = 0;
 
 function setup() {
   createCanvas(canvaWidth, canvaHeight);
   redBall = new Ball(15, ...red, 20);
   paddle = new Paddle(...grey, 130, 15);
-  for (let i = 0; i < 10; i++) {
-    bricks[i] = new Brick(translation, ...grey, 35, 35);
-    translation += 50;
+  bricks = [];
+  for (let i = 0; i < levelMatrix1.length; i++) {
+    for (let j = 0; j < levelMatrix1[i].length; j++) {
+      if (levelMatrix1[i][j] === 1) {
+        let xLoc = j * 100 + brickWidth / 2;
+        let yLoc = i * 100 + brickHeight / 2;
+        bricks = [
+          ...bricks,
+          new Brick(xLoc, yLoc, ...grey, brickWidth, brickHeight)
+        ];
+      }
+    }
   }
 }
 
@@ -50,7 +70,6 @@ function draw() {
         canvaHeight / 2
       );
       noLoop();
-      translation = 100;
     }
     setTimeout(win, 0);
   }
@@ -60,13 +79,13 @@ function draw() {
   } else if (keyIsDown(RIGHT_ARROW)) {
     paddle.body.x += paddle.xdir;
   }
+  console.log(bricks);
 }
 
 function keyPressed() {
   if (keyCode === UP_ARROW) {
     setup();
     loop();
-    translation = 100;
     score = 0;
   }
 }
