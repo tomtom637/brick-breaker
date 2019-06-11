@@ -6,5 +6,5 @@
 - [x] make a score system
 - [x] make an ending
 - [x] make a title
-- [] make sound effects
 - [] refactor to make levels
+- [] make sound effects

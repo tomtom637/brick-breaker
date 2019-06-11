@@ -1,15 +1,6 @@
-const levelMatrix1 = [
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 1, 0, 1, 0, 1, 0],
-  [0, 1, 0, 1, 0, 1, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0]
-];
-
-let canvaWidth = levelMatrix1[0].length * 100;
-let canvaHeight = levelMatrix1.length * 100;
+let currentLevel = 0;
+let canvaWidth = levels[currentLevel][0].length * 100;
+let canvaHeight = levels[currentLevel].length * 100;
 const red = [200, 0, 50];
 const blue = [0, 150, 200];
 const green = [0, 200, 80];
@@ -28,9 +19,9 @@ function setup() {
   redBall = new Ball(15, ...red, 20);
   paddle = new Paddle(...grey, 130, 15);
   bricks = [];
-  for (let i = 0; i < levelMatrix1.length; i++) {
-    for (let j = 0; j < levelMatrix1[i].length; j++) {
-      if (levelMatrix1[i][j] === 1) {
+  for (let i = 0; i < levels[currentLevel].length; i++) {
+    for (let j = 0; j < levels[currentLevel][i].length; j++) {
+      if (levels[currentLevel][i][j] === 1) {
         let xLoc = j * 100 + brickWidth / 2;
         let yLoc = i * 100 + brickHeight / 2;
         bricks = [
@@ -63,15 +54,22 @@ function draw() {
   text(`SCORE : ${score}`, canvaWidth / 10, canvaHeight / 10);
 
   if (bricks.length === 0) {
-    function win() {
+    noLoop();
+    if (currentLevel === levels.length - 1) {
       text(
-        `CONGRATILATIONS\nPRESS THE UP ARROW TO START OVER`,
+        `CONGRATILATIONS\nYOU'VE FINISHED THE GAME`,
         canvaWidth / 2 - 40,
         canvaHeight / 2
       );
-      noLoop();
+      currentLevel = 0;
+    } else {
+      text(
+        `CONGRATILATIONS\nPRESS THE UP ARROW TO CONTINUE`,
+        canvaWidth / 2 - 40,
+        canvaHeight / 2
+      );
+      currentLevel++;
     }
-    setTimeout(win, 0);
   }
 
   if (keyIsDown(LEFT_ARROW)) {
@@ -79,7 +77,6 @@ function draw() {
   } else if (keyIsDown(RIGHT_ARROW)) {
     paddle.body.x += paddle.xdir;
   }
-  console.log(bricks);
 }
 
 function keyPressed() {
