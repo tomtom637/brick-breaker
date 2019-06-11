@@ -74,6 +74,10 @@ class Ball {
         this.ydir = -this.ydir;
         brick.lives -= 1;
         score++;
+        if (score > highScore) {
+          highScore = score;
+          localStorage.setItem("highScore", JSON.stringify(highScore));
+        }
       }
     }
   }

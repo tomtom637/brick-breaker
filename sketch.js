@@ -13,6 +13,7 @@ let bricks;
 let brickWidth = 35;
 let brickHeight = 35;
 let score = 0;
+let highScore = JSON.parse(localStorage.getItem("highScore")) || 0;
 
 function setup() {
   createCanvas(canvaWidth, canvaHeight);
@@ -52,6 +53,7 @@ function draw() {
 
   fill(...grey);
   text(`SCORE : ${score}`, canvaWidth / 10, canvaHeight / 10);
+  text(`HIGHSCORE : ${highScore}`, canvaWidth / 1.3, canvaHeight / 10);
 
   if (bricks.length === 0) {
     noLoop();
