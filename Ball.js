@@ -60,6 +60,7 @@ class Ball {
           canvaHeight / 2
         );
         noLoop();
+        score = 0;
       }
     }
     // logic for bouncing off the bricks

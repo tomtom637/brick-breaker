@@ -83,6 +83,5 @@ function keyPressed() {
   if (keyCode === UP_ARROW) {
     setup();
     loop();
-    score = 0;
   }
 }
