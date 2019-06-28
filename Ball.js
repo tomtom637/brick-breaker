@@ -8,6 +8,7 @@ class Ball {
     this.g = g;
     this.b = b;
     this.diameter = diameter;
+    this.radius = diameter / 2;
   }
   update() {
     // starting the game with the ball going left
@@ -17,11 +18,10 @@ class Ball {
     this.body.y -= this.ydir;
 
     // logic for bouncing off the vertical walls
-    if (
-      this.body.x >= canvaWidth - this.diameter / 2 ||
-      this.body.x <= this.diameter / 2
-    ) {
-      this.xdir = -this.xdir;
+    if (this.body.x >= canvaWidth - this.diameter / 2 && this.xdir < 0) {
+      this.xdir = this.xdir * -1;
+    } else if (this.body.x <= this.diameter / 2 && this.xdir > 0) {
+      this.xdir = this.xdir * -1;
     }
 
     // logic for bouncing off the top wall
@@ -65,19 +65,52 @@ class Ball {
     }
     // logic for bouncing off the bricks
     for (let brick of bricks) {
+      let brickLeft = brick.body.x;
+      let brickRight = brick.body.x + brick.bWidth;
+      let brickTop = brick.body.y;
+      let brickBottom = brick.body.y + brick.bHeight;
+      let { x, y } = this.body;
+
       if (
-        this.body.y < brick.body.y + brick.bHeight &&
-        this.body.y + this.diameter / 2 > brick.body.y &&
-        this.body.x < brick.body.x + brick.bWidth &&
-        this.body.x + this.diameter / 2 > brick.body.x
+        x + this.radius >= brickLeft &&
+        x - this.radius < brickLeft &&
+        y + this.radius > brickTop &&
+        y - this.radius < brickBottom &&
+        this.xdir < 0
+      ) {
+        this.xdir = -this.xdir;
+        brick.lives -= 1;
+        score++;
+      } else if (
+        x - this.radius <= brickRight &&
+        x + this.radius >= brickRight &&
+        y + this.radius > brickTop &&
+        y - this.radius < brickBottom &&
+        this.xdir > 0
+      ) {
+        this.xdir = -this.xdir;
+        brick.lives -= 1;
+        score++;
+      } else if (
+        y + this.radius >= brickTop &&
+        y - this.radius < brickTop &&
+        x + this.radius > brickLeft &&
+        x - this.radius < brickRight &&
+        this.ydir < 0
       ) {
         this.ydir = -this.ydir;
         brick.lives -= 1;
         score++;
-        if (score > highScore) {
-          highScore = score;
-          localStorage.setItem("highScore", JSON.stringify(highScore));
-        }
+      } else if (
+        y - this.radius <= brickBottom &&
+        y + this.radius > brickBottom &&
+        x + this.radius > brickLeft &&
+        x - this.radius < brickRight &&
+        this.ydir > 0
+      ) {
+        this.ydir = -this.ydir;
+        brick.lives -= 1;
+        score++;
       }
     }
   }

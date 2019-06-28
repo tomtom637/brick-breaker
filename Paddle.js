@@ -5,7 +5,7 @@ class Paddle {
     this.b = b;
     this.pWidth = pWidth;
     this.pHeight = pHeight;
-    this.xdir = 13;
+    this.xdir = 12;
     this.body = createVector(canvaWidth / 2 - pWidth / 2, canvaHeight / 1.06);
   }
   update() {
@@ -15,15 +15,6 @@ class Paddle {
   }
   show() {
     fill(this.r, this.g, this.b);
-    rect(this.body.x, this.body.y, this.pWidth, this.pHeight);
-
-    fill(60);
-    noStroke();
-    rect(
-      this.body.x + this.pWidth * 0.45,
-      this.body.y + 5,
-      this.pWidth - this.pWidth * 0.9,
-      this.pHeight - 10
-    );
+    image(skateboardImg, this.body.x, this.body.y, this.pWidth, this.pHeight);
   }
 }

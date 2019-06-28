@@ -10,14 +10,24 @@ const darkGrey = [80, 80, 80];
 let redBall;
 let paddle;
 let bricks;
-let brickWidth = 35;
-let brickHeight = 35;
+let brickWidth = 45;
+let brickHeight = 20;
 let score = 0;
 let highScore = JSON.parse(localStorage.getItem("highScore")) || 0;
 
+let spaceshipImg;
+let spaceImg;
+let skateboardImg;
+
+function preload() {
+  spaceshipImg = loadImage("./images/spaceship.png");
+  spaceImg = loadImage("./images/space.jpg");
+  skateboardImg = loadImage("./images/skateboard.png");
+}
+
 function setup() {
   createCanvas(canvaWidth, canvaHeight);
-  redBall = new Ball(15, ...red, 20);
+  redBall = new Ball(12, ...red, 20);
   paddle = new Paddle(...grey, 130, 15);
   bricks = [];
   for (let i = 0; i < levels[currentLevel].length; i++) {
@@ -35,7 +45,7 @@ function setup() {
 }
 
 function draw() {
-  background(40);
+  background(spaceImg);
 
   redBall.update();
   redBall.show();

@@ -11,6 +11,6 @@ class Brick {
   update() {}
   show() {
     fill(this.r, this.g, this.b);
-    rect(this.body.x, this.body.y, this.bWidth, this.bHeight);
+    image(spaceshipImg, this.body.x, this.body.y, this.bWidth, this.bHeight);
   }
 }
