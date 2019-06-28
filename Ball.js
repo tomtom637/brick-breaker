@@ -72,40 +72,40 @@ class Ball {
       let { x, y } = this.body;
 
       if (
-        x + this.radius >= brickLeft &&
+        x + this.radius > brickLeft &&
         x - this.radius < brickLeft &&
-        y + this.radius > brickTop &&
-        y - this.radius < brickBottom &&
+        y > brickTop &&
+        y < brickBottom &&
         this.xdir < 0
       ) {
         this.xdir = -this.xdir;
         brick.lives -= 1;
         score++;
       } else if (
-        x - this.radius <= brickRight &&
-        x + this.radius >= brickRight &&
-        y + this.radius > brickTop &&
-        y - this.radius < brickBottom &&
+        x - this.radius < brickRight &&
+        x + this.radius > brickRight &&
+        y > brickTop &&
+        y < brickBottom &&
         this.xdir > 0
       ) {
         this.xdir = -this.xdir;
         brick.lives -= 1;
         score++;
       } else if (
-        y + this.radius >= brickTop &&
+        y + this.radius > brickTop &&
         y - this.radius < brickTop &&
-        x + this.radius > brickLeft &&
-        x - this.radius < brickRight &&
+        x > brickLeft &&
+        x < brickRight &&
         this.ydir < 0
       ) {
         this.ydir = -this.ydir;
         brick.lives -= 1;
         score++;
       } else if (
-        y - this.radius <= brickBottom &&
+        y - this.radius < brickBottom &&
         y + this.radius > brickBottom &&
-        x + this.radius > brickLeft &&
-        x - this.radius < brickRight &&
+        x > brickLeft &&
+        x < brickRight &&
         this.ydir > 0
       ) {
         this.ydir = -this.ydir;
