@@ -81,6 +81,8 @@ function draw() {
         canvaHeight / 2
       );
       currentLevel++;
+      canvaWidth = levels[currentLevel][0].length * 100;
+      canvaHeight = levels[currentLevel].length * 100;
     }
   }
 
