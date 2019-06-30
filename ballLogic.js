@@ -142,21 +142,37 @@ Ball.prototype.ballLogic = function() {
       this.xdir = -this.xdir;
       brick.lives -= 1;
       score++;
+      if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("highScore", JSON.stringify(highScore));
+      }
     }
     if (touchingTop) {
       this.ydir = -this.ydir;
       brick.lives -= 1;
       score++;
+      if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("highScore", JSON.stringify(highScore));
+      }
     }
     if (touchingRight) {
       this.xdir = -this.xdir;
       brick.lives -= 1;
       score++;
+      if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("highScore", JSON.stringify(highScore));
+      }
     }
     if (touchingBottom) {
       this.ydir = -this.ydir;
       brick.lives -= 1;
       score++;
+      if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("highScore", JSON.stringify(highScore));
+      }
     }
   } // end of ball touching the brick logic ------------
 };
