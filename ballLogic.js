@@ -99,18 +99,42 @@ Ball.prototype.ballLogic = function() {
     }
     // if the ball touches corners it should rebounce in a diagonal
     if (touchingLeft && touchingTop) {
+      if (this.body.x >= brickLeft) {
+        this.xdir = -this.xdir;
+      }
+      if (this.body.y >= brickTop) {
+        this.ydir = -this.ydir;
+      }
       brick.lives += 1;
       score--;
     }
     if (touchingTop && touchingRight) {
+      if (this.body.x <= brickRight) {
+        this.xdir = -this.xdir;
+      }
+      if (this.body.y >= brickTop) {
+        this.ydir = -this.ydir;
+      }
       brick.lives += 1;
       score--;
     }
     if (touchingRight && touchingBottom) {
+      if (this.body.x <= brickRight) {
+        this.xdir = -this.xdir;
+      }
+      if (this.body.y <= brickBottom) {
+        this.ydir = -this.ydir;
+      }
       brick.lives += 1;
       score--;
     }
     if (touchingBottom && touchingLeft) {
+      if (this.body.x >= brickLeft) {
+        this.xdir = -this.xdir;
+      }
+      if (this.body.y <= brickBottom) {
+        this.ydir = -this.ydir;
+      }
       brick.lives += 1;
       score--;
     }
