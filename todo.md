@@ -12,6 +12,6 @@
 ## AFTERMATH TODOS
 
 - [] try to solve as many bugs as possible
-  - [] slow frame-rate
-  - [] collision bug when both the ball and the paddle are right against the edge
-  - [] stiffness of the controls
+  - [x] slow frame-rate
+  - [x] collision bug when both the ball and the paddle are right against the edge
+  - [x] stiffness of the controls
