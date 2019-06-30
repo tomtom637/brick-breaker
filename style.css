@@ -16,13 +16,19 @@ body {
 body {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.title-content {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 .title {
   color: #fff;
   font-size: 50px;
   font-weight: 300;
   margin: auto;
-  margin-bottom: -50px;
 }
 .tips {
   margin: auto;

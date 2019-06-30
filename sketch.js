@@ -69,7 +69,7 @@ function draw() {
     noLoop();
     if (currentLevel === levels.length - 1) {
       text(
-        `CONGRATILATIONS\nYOU'VE FINISHED THE GAME`,
+        `CONGRATILATIONS\nYOU'VE FINISHED THE GAME\nPRESS THE UP ARROW TO CONTINUE PLAYING`,
         canvaWidth / 2 - 40,
         canvaHeight / 2
       );
