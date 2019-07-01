@@ -5,10 +5,8 @@ body {
   height: 100vh;
   background: linear-gradient(
     135deg,
-    rgba(30, 87, 153, 1) 0%,
-    rgba(41, 137, 216, 1) 50%,
-    rgba(32, 124, 202, 1) 51%,
-    rgba(125, 185, 232, 1) 100%
+    rgb(50, 52, 56) 0%,
+    rgba(0, 0, 0, 1) 100%
   );
   background-size: cover;
   font-family: "consolas", monospace;
@@ -31,6 +29,7 @@ body {
   margin: auto;
 }
 .tips {
+  color: #aaa;
   margin: auto;
   font-size: 18;
 }

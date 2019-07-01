@@ -1,6 +1,5 @@
 class Ball {
   constructor(speed, r, g, b, diameter) {
-    this.body = createVector(canvaWidth / 2, canvaHeight / 1.06);
     this.speed = speed;
     this.xdir = speed / 8;
     this.ydir = speed - this.xdir;
@@ -9,6 +8,7 @@ class Ball {
     this.b = b;
     this.diameter = diameter;
     this.radius = diameter / 2;
+    this.body = createVector(canvaWidth / 2 - this.radius, canvaHeight / 1.09);
   }
   update() {
     // starting the game with the ball going left
@@ -21,6 +21,6 @@ class Ball {
   }
   show() {
     fill(this.r, this.g, this.b);
-    circle(this.body.x, this.body.y, this.diameter, this.diameter);
+    image(ballImg, this.body.x, this.body.y, this.diameter, this.diameter);
   }
 }

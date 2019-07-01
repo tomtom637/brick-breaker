@@ -16,13 +16,15 @@ let score = 0;
 let highScore = JSON.parse(localStorage.getItem("highScore")) || 0;
 
 let spaceshipImg;
-let spaceImg;
+let backgroundImg;
 let skateboardImg;
+let ballImg;
 
 function preload() {
   spaceshipImg = loadImage("./images/spaceship.png");
-  spaceImg = loadImage("./images/space.jpg");
+  backgroundImg = loadImage("./images/background.jpg");
   skateboardImg = loadImage("./images/skateboard.png");
+  ballImg = loadImage("./images/ball.png");
 }
 
 function setup() {
@@ -45,7 +47,7 @@ function setup() {
 }
 
 function draw() {
-  background(spaceImg);
+  background(backgroundImg);
 
   redBall.update();
   redBall.show();

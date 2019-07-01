@@ -1,26 +1,34 @@
 Ball.prototype.ballLogic = function() {
+  const ballLeft = this.body.x;
+  const ballRight = this.body.x + this.diameter;
+  const ballTop = this.body.y;
+  const ballBottom = this.body.y + this.diameter;
+  const ballCenterX = ballLeft + this.radius;
+  const ballCenterY = ballTop + this.radius;
+
   // logic for bouncing off the vertical walls
-  if (this.body.x >= canvaWidth - this.diameter / 2 && this.xdir < 0) {
-    this.xdir = this.xdir * -1;
-  } else if (this.body.x <= this.diameter / 2 && this.xdir > 0) {
-    this.xdir = this.xdir * -1;
+  if (ballRight > canvaWidth && this.xdir < 0) {
+    this.xdir = -this.xdir;
+  } else if (ballLeft < 0 && this.xdir > 0) {
+    this.xdir = -this.xdir;
   }
 
   // logic for bouncing off the top wall
-  if (this.body.y <= this.diameter / 2 && this.ydir > 0) {
+  if (ballTop < 0 && this.ydir > 0) {
     this.ydir = -this.ydir;
   }
 
   // logic for bouncing off the paddle
-  if (this.body.y >= paddle.body.y + 8 - this.diameter / 2) {
-    if (
-      this.body.x + this.diameter / 2 > paddle.body.x &&
-      this.body.x - this.diameter / 2 < paddle.body.x + paddle.pWidth
-    ) {
+  let paddleLeft = paddle.body.x;
+  let paddleRight = paddle.body.x + paddle.pWidth;
+  let paddleTop = paddle.body.y;
+  let paddleCenter = paddleLeft + paddle.pWidth / 2;
+  let relativeBallPosition = paddleCenter - ballCenterX;
+  let speedMultiplicator = (relativeBallPosition / paddle.pWidth) * 2 * 0.85;
+
+  if (ballBottom > paddleTop) {
+    if (ballRight >= paddleLeft && ballLeft <= paddleRight) {
       this.ydir = -this.ydir;
-      let paddleCenter = paddle.body.x + paddle.pWidth / 2;
-      let relativeBallPosition = paddleCenter - this.body.x;
-      let speedMultiplicator = (relativeBallPosition / paddle.pWidth) * 2 * 0.8;
       this.xdir = this.speed * speedMultiplicator;
       if (this.xdir < 0) {
         this.ydir = this.speed + this.xdir;
@@ -29,7 +37,7 @@ Ball.prototype.ballLogic = function() {
       } else {
         this.ydir = 0;
       }
-      if (this.body.x === paddleCenter) {
+      if (ballCenterX === paddleCenter) {
         this.xdir = 0;
         this.ydir = this.speed;
       }
@@ -50,10 +58,6 @@ Ball.prototype.ballLogic = function() {
     const brickRight = brick.body.x + brick.bWidth;
     const brickTop = brick.body.y;
     const brickBottom = brick.body.y + brick.bHeight;
-    const ballLeft = this.body.x - this.radius;
-    const ballRight = this.body.x + this.radius;
-    const ballTop = this.body.y - this.radius;
-    const ballBottom = this.body.y + this.radius;
 
     let touchingLeft = false;
     let touchingRight = false;
@@ -99,40 +103,40 @@ Ball.prototype.ballLogic = function() {
     }
     // if the ball touches corners it should rebounce in a diagonal
     if (touchingLeft && touchingTop) {
-      if (this.body.x >= brickLeft) {
+      if (ballCenterX >= brickLeft) {
         this.xdir = -this.xdir;
       }
-      if (this.body.y >= brickTop) {
+      if (ballCenterY >= brickTop) {
         this.ydir = -this.ydir;
       }
       brick.lives += 1;
       score--;
     }
     if (touchingTop && touchingRight) {
-      if (this.body.x <= brickRight) {
+      if (ballCenterX <= brickRight) {
         this.xdir = -this.xdir;
       }
-      if (this.body.y >= brickTop) {
+      if (ballCenterY >= brickTop) {
         this.ydir = -this.ydir;
       }
       brick.lives += 1;
       score--;
     }
     if (touchingRight && touchingBottom) {
-      if (this.body.x <= brickRight) {
+      if (ballCenterX <= brickRight) {
         this.xdir = -this.xdir;
       }
-      if (this.body.y <= brickBottom) {
+      if (ballCenterY <= brickBottom) {
         this.ydir = -this.ydir;
       }
       brick.lives += 1;
       score--;
     }
     if (touchingBottom && touchingLeft) {
-      if (this.body.x >= brickLeft) {
+      if (ballCenterX >= brickLeft) {
         this.xdir = -this.xdir;
       }
-      if (this.body.y <= brickBottom) {
+      if (ballCenterY <= brickBottom) {
         this.ydir = -this.ydir;
       }
       brick.lives += 1;
