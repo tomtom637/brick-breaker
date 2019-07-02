@@ -52,6 +52,7 @@ Ball.prototype.ballLogic = function() {
         canvaWidth / 2 - 40,
         canvaHeight / 2
       );
+      failSound.play();
       noLoop();
       score = 0;
     }

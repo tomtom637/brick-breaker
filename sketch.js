@@ -21,6 +21,7 @@ let skateboardImg;
 let ballImg;
 let ballSound;
 let brickSound;
+let failSound;
 
 function preload() {
   spaceshipImg = loadImage("./images/spaceship.png");
@@ -29,6 +30,7 @@ function preload() {
   ballImg = loadImage("./images/ball.png");
   ballSound = loadSound("./sounds/ball.wav");
   brickSound = loadSound("./sounds/brick.wav");
+  failSound = loadSound("./sounds/fail.wav");
 }
 
 function setup() {
