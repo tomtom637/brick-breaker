@@ -7,11 +7,11 @@
 - [x] make an ending
 - [x] make a title
 - [x] refactor to make levels
-- [] make sound effects
+- [x] make sound effects
 
 ## AFTERMATH TODOS
 
-- [] try to solve as many bugs as possible
+- [x] try to solve as many bugs as possible
   - [x] slow frame-rate
   - [x] collision bug when both the ball and the paddle are right against the edge
   - [x] stiffness of the controls

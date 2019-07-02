@@ -9,13 +9,16 @@ Ball.prototype.ballLogic = function() {
   // logic for bouncing off the vertical walls
   if (ballRight > canvaWidth && this.xdir < 0) {
     this.xdir = -this.xdir;
+    ballSound.play();
   } else if (ballLeft < 0 && this.xdir > 0) {
     this.xdir = -this.xdir;
+    ballSound.play();
   }
 
   // logic for bouncing off the top wall
   if (ballTop < 0 && this.ydir > 0) {
     this.ydir = -this.ydir;
+    ballSound.play();
   }
 
   // logic for bouncing off the paddle
@@ -24,10 +27,11 @@ Ball.prototype.ballLogic = function() {
   let paddleTop = paddle.body.y;
   let paddleCenter = paddleLeft + paddle.pWidth / 2;
   let relativeBallPosition = paddleCenter - ballCenterX;
-  let speedMultiplicator = (relativeBallPosition / paddle.pWidth) * 2 * 0.85;
+  let speedMultiplicator = (relativeBallPosition / paddle.pWidth) * 2 * 0.7;
 
   if (ballBottom > paddleTop) {
     if (ballRight >= paddleLeft && ballLeft <= paddleRight) {
+      ballSound.play();
       this.ydir = -this.ydir;
       this.xdir = this.speed * speedMultiplicator;
       if (this.xdir < 0) {
@@ -143,6 +147,7 @@ Ball.prototype.ballLogic = function() {
       score--;
     }
     if (touchingLeft) {
+      brickSound.play();
       this.xdir = -this.xdir;
       brick.lives -= 1;
       score++;
@@ -152,6 +157,7 @@ Ball.prototype.ballLogic = function() {
       }
     }
     if (touchingTop) {
+      brickSound.play();
       this.ydir = -this.ydir;
       brick.lives -= 1;
       score++;
@@ -161,6 +167,7 @@ Ball.prototype.ballLogic = function() {
       }
     }
     if (touchingRight) {
+      brickSound.play();
       this.xdir = -this.xdir;
       brick.lives -= 1;
       score++;
@@ -170,6 +177,7 @@ Ball.prototype.ballLogic = function() {
       }
     }
     if (touchingBottom) {
+      brickSound.play();
       this.ydir = -this.ydir;
       brick.lives -= 1;
       score++;

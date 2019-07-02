@@ -10,7 +10,8 @@ class Brick {
   }
   update() {}
   show() {
-    fill(this.r, this.g, this.b);
+    fill("rgba(0, 0, 0, 0.2)");
+    rect(this.body.x + 5, this.body.y + 5, this.bWidth, this.bHeight);
     image(spaceshipImg, this.body.x, this.body.y, this.bWidth, this.bHeight);
   }
 }

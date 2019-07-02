@@ -14,7 +14,6 @@ class Paddle {
     this.body.x <= 0 && (this.body.x = 0);
   }
   show() {
-    fill(this.r, this.g, this.b);
     image(skateboardImg, this.body.x, this.body.y, this.pWidth, this.pHeight);
   }
 }

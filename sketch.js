@@ -19,12 +19,16 @@ let spaceshipImg;
 let backgroundImg;
 let skateboardImg;
 let ballImg;
+let ballSound;
+let brickSound;
 
 function preload() {
   spaceshipImg = loadImage("./images/spaceship.png");
   backgroundImg = loadImage("./images/background.jpg");
   skateboardImg = loadImage("./images/skateboard.png");
   ballImg = loadImage("./images/ball.png");
+  ballSound = loadSound("./sounds/ball.wav");
+  brickSound = loadSound("./sounds/brick.wav");
 }
 
 function setup() {
@@ -63,6 +67,7 @@ function draw() {
     }
   }
 
+  noStroke();
   fill(...grey);
   text(`SCORE : ${score}`, canvaWidth / 10, canvaHeight / 10);
   text(`HIGHSCORE : ${highScore}`, canvaWidth / 1.3, canvaHeight / 10);
